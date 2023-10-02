@@ -117,3 +117,12 @@ fun getDbSignalForm(amplitudeData: IntArray, state: State): IntArray {
         )
     return newData
 }
+
+fun calculateMaxAmplitude(audioData: ByteArray): Int {
+    var maxAmplitude = 0
+    for (i in audioData.indices step 2) {
+        val sample = audioData[i].toShort() or (audioData[i + 1].toInt() shl 8).toShort()
+        maxAmplitude = max(maxAmplitude, sample.toInt())
+    }
+    return maxAmplitude
+}
