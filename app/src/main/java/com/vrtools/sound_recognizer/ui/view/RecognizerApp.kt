@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -20,6 +20,7 @@ fun RecognizerApp (activity: MainActivity) {
     val hasAudioPermission = ContextCompat.checkSelfPermission(
         activity, Manifest.permission.RECORD_AUDIO
     ) == PackageManager.PERMISSION_GRANTED
+    var isRecording by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -30,17 +31,19 @@ fun RecognizerApp (activity: MainActivity) {
     ) {
         Text(text = "Audio Recorder", style = MaterialTheme.typography.h4)
         val recorder = AudioRecorder(activity)
-
         if (hasAudioPermission) {
             RecordButton(
                 onClick = {
-                    if (recorder.isRecording.get()) {
+                    println(isRecording)
+                    if (isRecording) {
                         recorder.stopRecording()
+                        isRecording = false
                     } else {
                         recorder.startRecording()
+                        isRecording = true
                     }
                 },
-                isRecording = recorder.isRecording.get()
+                isRecording = isRecording
             )
 
             AudioVisualizer(recorder.data)
