@@ -10,6 +10,7 @@ import com.vrtools.sound_recognizer.MainActivity
 import com.vrtools.sound_recognizer.utils.SAMPLING_RATE
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class AudioRecorder (private val activity: MainActivity){
@@ -21,21 +22,24 @@ class AudioRecorder (private val activity: MainActivity){
     val data = ByteArray(bufferSize)
     var recorder: AudioRecord? = null
     private var isRecording = false
+    private var dataReadRoutine: Job? = null
 
-    @Synchronized
     fun startRecording() {
+        if(isRecording) return
+        println("start recording")
         initRecorder()
         recorder?.startRecording()
         isRecording = true
-        initDataReader()
+        initDataReadRoutine()
     }
 
-    @Synchronized
     fun stopRecording() {
+        println("stop recording")
         recorder?.stop()
         recorder?.release()
         recorder = null
         isRecording = false
+        stopDataReadRoutine()
     }
 
     private fun initRecorder() {
@@ -52,13 +56,18 @@ class AudioRecorder (private val activity: MainActivity){
         )
     }
 
-    private fun initDataReader() {
-        CoroutineScope(Dispatchers.IO).launch {
-            while (isRecording) {
+    private fun stopDataReadRoutine() {
+        dataReadRoutine?.cancel()
+    }
+
+    private fun initDataReadRoutine() {
+        dataReadRoutine?.cancel()
+        dataReadRoutine = CoroutineScope(Dispatchers.IO).launch {
+            while(isRecording) {
                 val readSize = recorder?.read(data, 0, bufferSize)
-                if (readSize != null && readSize != AudioRecord.ERROR_INVALID_OPERATION) {
+                println("Recording: ${isRecording}, Read size: $readSize")
+                if (readSize != null && readSize != AudioRecord.ERROR_INVALID_OPERATION)
                     data.copyOfRange(0, readSize)
-                }
             }
         }
     }

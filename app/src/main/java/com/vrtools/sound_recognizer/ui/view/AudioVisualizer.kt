@@ -18,6 +18,7 @@ fun AudioVisualizer(audioData: ByteArray) {
 
     LaunchedEffect(audioData) {
         maxAmplitude = calculateMaxAmplitude(audioData)
+        println("Amplitude: $maxAmplitude")
     }
 
     Column(

@@ -34,13 +34,12 @@ fun RecognizerApp (activity: MainActivity) {
         if (hasAudioPermission) {
             RecordButton(
                 onClick = {
-                    println(isRecording)
-                    if (isRecording) {
+                    isRecording = if (isRecording) {
                         recorder.stopRecording()
-                        isRecording = false
+                        false
                     } else {
                         recorder.startRecording()
-                        isRecording = true
+                        true
                     }
                 },
                 isRecording = isRecording
