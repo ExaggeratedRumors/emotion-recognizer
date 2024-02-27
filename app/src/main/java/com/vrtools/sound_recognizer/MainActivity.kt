@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import com.vrtools.sound_recognizer.ui.theme.SoundRecognizerTheme
-import com.vrtools.sound_recognizer.ui.view.RecognizerApp
+import com.vrtools.sound_recognizer.theme.SoundRecognizerTheme
+import com.vrtools.sound_recognizer.view.RecognizerApp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

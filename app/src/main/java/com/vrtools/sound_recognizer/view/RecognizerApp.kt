@@ -1,4 +1,4 @@
-package com.vrtools.sound_recognizer.ui.view
+package com.vrtools.sound_recognizer.view
 
 import android.Manifest
 import android.content.pm.PackageManager

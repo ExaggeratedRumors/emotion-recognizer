@@ -1,10 +1,11 @@
-package com.vrtools.sound_recognizer.ui.view
+package com.vrtools.sound_recognizer.view
 
 import android.content.Context
 import android.graphics.*
 import android.view.View
-import com.vrtools.sound_recognizer.ui.theme.LABEL_COLOR
-import com.vrtools.sound_recognizer.ui.theme.LINE_COLOR
+import com.vrtools.sound_recognizer.theme.LABEL_COLOR
+import com.vrtools.sound_recognizer.theme.LINE_COLOR
+import com.vrtools.sound_recognizer.view.LabelView
 import com.vrtools.sound_recognizer.utils.*
 import java.util.concurrent.atomic.AtomicBoolean
 

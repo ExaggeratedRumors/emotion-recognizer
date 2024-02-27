@@ -1,4 +1,4 @@
-package com.vrtools.sound_recognizer.ui.view
+package com.vrtools.sound_recognizer.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -39,7 +39,9 @@ fun AudioVisualizer(audioData: ByteArray) {
                     .fillMaxWidth()
                     .fillMaxHeight(maxAmplitude / (AUDIO_RECORD_MAX_VALUE - 1).toFloat())
                     .background(Color.Blue)
-            )
+            ) {
+                Graph(data = audioData)
+            }
         }
     }
 }

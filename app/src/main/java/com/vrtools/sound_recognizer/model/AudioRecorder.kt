@@ -63,7 +63,8 @@ class AudioRecorder (private val activity: MainActivity){
     private fun initDataReadRoutine() {
         dataReadRoutine?.cancel()
         dataReadRoutine = CoroutineScope(Dispatchers.IO).launch {
-            while(isRecording) {
+            println("Recording: $isRecording")
+            while(false) {
                 val readSize = recorder?.read(data, 0, bufferSize)
                 println("Recording: ${isRecording}, Read size: $readSize")
                 if (readSize != null && readSize != AudioRecord.ERROR_INVALID_OPERATION)

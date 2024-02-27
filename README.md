@@ -16,11 +16,13 @@ in progress
 
 ## Technologies
 
-- Jetpack Compose 1.1.1
+- Jetpack Compose 1.5.4
+- Compose Compiler 1.5.10
 - KotlinDL 0.4.0
-- Kotlin 1.7.10
+- Kotlin 1.9.22
 
 ## Requirements
 
 - Android SDK 33
+- JVM 19
 - Gradle 8.0.0

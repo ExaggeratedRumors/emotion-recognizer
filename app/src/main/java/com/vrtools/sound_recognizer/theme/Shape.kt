@@ -1,4 +1,4 @@
-package com.vrtools.sound_recognizer.ui.theme
+package com.vrtools.sound_recognizer.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
