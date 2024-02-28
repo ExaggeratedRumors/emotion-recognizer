@@ -13,6 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
 
+/**
+ * TODO:
+ * Zastosować Consumer-Provider dla data
+ */
 @Composable
 fun Graph (data: ByteArray) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {

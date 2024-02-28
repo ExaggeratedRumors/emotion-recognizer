@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.vrtools.sound_recognizer.utils.AUDIO_RECORD_MAX_VALUE
-import com.vrtools.sound_recognizer.utils.calculateMaxAmplitude
+import com.vrtools.sound_recognizer.model.calculateMaxAmplitude
 
 @Composable
 fun AudioVisualizer(audioData: ByteArray) {

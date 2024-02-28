@@ -1,6 +1,8 @@
 package com.vrtools.sound_recognizer.model
 
 import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.pm.PackageManager
 import android.media.AudioFormat
 import android.media.AudioRecord
@@ -8,12 +10,13 @@ import android.media.MediaRecorder
 import androidx.core.app.ActivityCompat
 import com.vrtools.sound_recognizer.MainActivity
 import com.vrtools.sound_recognizer.utils.SAMPLING_RATE
+import com.vrtools.sound_recognizer.utils.isPermissionsGainded
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class AudioRecorder (private val activity: MainActivity){
+class AudioRecorder (private val context: Context){
     private val bufferSize = AudioRecord.getMinBufferSize(
         SAMPLING_RATE,
         AudioFormat.CHANNEL_IN_MONO,
@@ -21,7 +24,7 @@ class AudioRecorder (private val activity: MainActivity){
     )
     val data = ByteArray(bufferSize)
     var recorder: AudioRecord? = null
-    private var isRecording = false
+    var isRecording = false
     private var dataReadRoutine: Job? = null
 
     fun startRecording() {
@@ -42,11 +45,9 @@ class AudioRecorder (private val activity: MainActivity){
         stopDataReadRoutine()
     }
 
+    @SuppressLint("MissingPermission")
     private fun initRecorder() {
-        recorder = if (ActivityCompat.checkSelfPermission(
-                activity,
-                Manifest.permission.RECORD_AUDIO
-            ) != PackageManager.PERMISSION_GRANTED) null
+        recorder = if (!isPermissionsGainded(context)) null
         else AudioRecord(
             MediaRecorder.AudioSource.MIC,
             SAMPLING_RATE,
@@ -69,6 +70,9 @@ class AudioRecorder (private val activity: MainActivity){
                 println("Recording: ${isRecording}, Read size: $readSize")
                 if (readSize != null && readSize != AudioRecord.ERROR_INVALID_OPERATION)
                     data.copyOfRange(0, readSize)
+                        .convertToComplex()
+                        .fft()
+                        .divideToThirds()
             }
         }
     }
