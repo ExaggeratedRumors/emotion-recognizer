@@ -13,16 +13,18 @@ import com.vrtools.sound_recognizer.model.AudioRecorder
 
 @Composable
 fun RecognizerApp () {
-    var isRecording by remember { mutableStateOf(false) }
-
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Text(text = "Audio Recorder", style = MaterialTheme.typography.h4)
         val context = LocalContext.current
-        val recorder = AudioRecorder(context)
+        val recorder = remember { AudioRecorder(context) }
+        var isRecording by remember { mutableStateOf(false) }
+
         RecordButton(
             onClick = {
                 isRecording = if (isRecording) {
@@ -35,6 +37,6 @@ fun RecognizerApp () {
             },
             isRecording = isRecording
         )
-        AudioVisualizer(recorder.data)
+        AudioVisualizer(recorder)
     }
 }

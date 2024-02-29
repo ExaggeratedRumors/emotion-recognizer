@@ -9,16 +9,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.vrtools.sound_recognizer.model.SpectrumProvider
 import com.vrtools.sound_recognizer.utils.AUDIO_RECORD_MAX_VALUE
-import com.vrtools.sound_recognizer.model.calculateMaxAmplitude
+import com.vrtools.sound_recognizer.utils.DEBUG_INTERFACE
 
 @Composable
-fun AudioVisualizer(audioData: ByteArray) {
-    var maxAmplitude by remember { mutableStateOf(0) }
+fun AudioVisualizer(provider: SpectrumProvider) {
+    var maxAmplitude by remember { mutableIntStateOf(0) }
 
-    LaunchedEffect(audioData) {
-        maxAmplitude = calculateMaxAmplitude(audioData)
-        println("Amplitude: $maxAmplitude")
+    LaunchedEffect(provider) {
+        maxAmplitude = provider.getMaxAmplitude()
+        if(DEBUG_INTERFACE) println("DEBUG INTERFACE: Amplitude $maxAmplitude")
     }
 
     Column(
@@ -40,7 +41,7 @@ fun AudioVisualizer(audioData: ByteArray) {
                     .fillMaxHeight(maxAmplitude / (AUDIO_RECORD_MAX_VALUE - 1).toFloat())
                     .background(Color.Blue)
             ) {
-                Graph(data = audioData)
+                Graph(provider)
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.vrtools.sound_recognizer.utils
 
+const val DEBUG_ENGINE = true
 const val AUDIO_RECORD_MAX_VALUE = 32768
 const val SAMPLING_RATE = 44100
 const val FFT_SIZE = 1024

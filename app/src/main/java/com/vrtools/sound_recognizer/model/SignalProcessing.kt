@@ -48,7 +48,9 @@ fun weightingC(numberOfTerce: Int) : Int {
 fun convertToDecibels(amplitude: Float) =
     (10 * log10(max(0.5f, amplitude))).toInt()
 
-fun ByteArray.convertToComplex() = Array(FFT_SIZE) {
+fun ByteArray.convertToComplex(): Array<Complex> {
+    if(this.size < FFT_SIZE * 2) throw RuntimeException("ERROR: Data size is lower than FFT_SIZE.")
+    return Array(FFT_SIZE) {
         if (it > this.size) Complex()
         else Complex(
             1.0 * CALIBRATION / AUDIO_RECORD_MAX_VALUE * (
@@ -56,6 +58,7 @@ fun ByteArray.convertToComplex() = Array(FFT_SIZE) {
                     )
         )
     }
+}
 
 fun Array<Complex>.fft(): Array<Complex> {
     val n = this.size
@@ -114,12 +117,12 @@ fun getDamping(terce: Int, state: State): Int {
     }
 }
 
-fun getDbSignalForm(amplitudeData: IntArray, state: State): IntArray {
+fun getDbSignalForm(amplitudeSpectrum: IntArray, state: State): IntArray {
     val newData = IntArray(THIRDS_NUMBER)
     for(i in 0 until THIRDS_NUMBER)
         newData[i] = max(
             0, getDamping(i, state) +
-                    convertToDecibels(amplitudeData[i].toFloat())
+                    convertToDecibels(amplitudeSpectrum[i].toFloat())
         )
     return newData
 }

@@ -1,48 +1,43 @@
 package com.vrtools.sound_recognizer.model
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.PackageManager
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
-import androidx.core.app.ActivityCompat
-import com.vrtools.sound_recognizer.MainActivity
+import com.vrtools.sound_recognizer.utils.DEBUG_ENGINE
 import com.vrtools.sound_recognizer.utils.SAMPLING_RATE
+import com.vrtools.sound_recognizer.utils.THIRDS_NUMBER
 import com.vrtools.sound_recognizer.utils.isPermissionsGainded
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlin.concurrent.thread
 
-class AudioRecorder (private val context: Context){
+class AudioRecorder (private val context: Context) : SpectrumProvider {
     private val bufferSize = AudioRecord.getMinBufferSize(
         SAMPLING_RATE,
         AudioFormat.CHANNEL_IN_MONO,
         AudioFormat.ENCODING_PCM_16BIT
     )
-    val data = ByteArray(bufferSize)
-    var recorder: AudioRecord? = null
-    var isRecording = false
-    private var dataReadRoutine: Job? = null
+    private val data = ByteArray(bufferSize)
+    private var spectrum = IntArray(THIRDS_NUMBER)
+    private var recorder: AudioRecord? = null
+    @Volatile
+    private var isRecording = false
 
     fun startRecording() {
         if(isRecording) return
-        println("start recording")
+        if(DEBUG_ENGINE) println("DEBUG ENGINE: Start recording.")
         initRecorder()
         recorder?.startRecording()
         isRecording = true
-        initDataReadRoutine()
+        readDataRoutine()
     }
 
     fun stopRecording() {
-        println("stop recording")
+        if(DEBUG_ENGINE) println("DEBUG ENGINE: Stop recording.")
+        isRecording = false
         recorder?.stop()
         recorder?.release()
         recorder = null
-        isRecording = false
-        stopDataReadRoutine()
     }
 
     @SuppressLint("MissingPermission")
@@ -57,23 +52,23 @@ class AudioRecorder (private val context: Context){
         )
     }
 
-    private fun stopDataReadRoutine() {
-        dataReadRoutine?.cancel()
-    }
-
-    private fun initDataReadRoutine() {
-        dataReadRoutine?.cancel()
-        dataReadRoutine = CoroutineScope(Dispatchers.IO).launch {
-            println("Recording: $isRecording")
-            while(false) {
+    private fun readDataRoutine() {
+        thread {
+            while (isRecording) {
                 val readSize = recorder?.read(data, 0, bufferSize)
-                println("Recording: ${isRecording}, Read size: $readSize")
+                if (DEBUG_ENGINE) println("DEBUG ENGINE: Size $readSize, Max amplitude ${getMaxAmplitude()}")
                 if (readSize != null && readSize != AudioRecord.ERROR_INVALID_OPERATION)
-                    data.copyOfRange(0, readSize)
-                        .convertToComplex()
-                        .fft()
-                        .divideToThirds()
+                    spectrum = processData(data.copyOfRange(0, readSize))
+                Thread.sleep(500)
             }
         }
     }
+
+    private fun processData(data: ByteArray) = data
+        .convertToComplex()
+        .fft()
+        .divideToThirds()
+
+    override fun getAmplitudeSpectrum() = spectrum
+    override fun getMaxAmplitude() = calculateMaxAmplitude(data)
 }

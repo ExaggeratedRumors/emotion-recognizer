@@ -12,18 +12,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
+import com.vrtools.sound_recognizer.model.SpectrumProvider
 
-/**
- * TODO:
- * Zastosować Consumer-Provider dla data
- */
 @Composable
-fun Graph (data: ByteArray) {
+fun Graph (provider: SpectrumProvider) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        data.forEach { sample ->
+        provider
+            .getAmplitudeSpectrum()
+            .forEach { sample ->
             val animatedHeight by animateFloatAsState(
                 targetValue = sample.toFloat(),
-                animationSpec = spring()
+                animationSpec = spring(), label = "$sample"
             )
 
             Box(
