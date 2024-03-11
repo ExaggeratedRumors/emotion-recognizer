@@ -6,6 +6,7 @@ import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import com.vrtools.sound_recognizer.utils.DEBUG_ENGINE
+import com.vrtools.sound_recognizer.utils.READ_DATA_DELAY
 import com.vrtools.sound_recognizer.utils.SAMPLING_RATE
 import com.vrtools.sound_recognizer.utils.THIRDS_NUMBER
 import com.vrtools.sound_recognizer.utils.isPermissionsGainded
@@ -59,7 +60,7 @@ class AudioRecorder (private val context: Context) : SpectrumProvider {
                 if (DEBUG_ENGINE) println("DEBUG ENGINE: Size $readSize, Max amplitude ${getMaxAmplitude()}")
                 if (readSize != null && readSize != AudioRecord.ERROR_INVALID_OPERATION)
                     spectrum = processData(data.copyOfRange(0, readSize))
-                Thread.sleep(500)
+                Thread.sleep(READ_DATA_DELAY)
             }
         }
     }
@@ -67,7 +68,7 @@ class AudioRecorder (private val context: Context) : SpectrumProvider {
     private fun processData(data: ByteArray) = data
         .convertToComplex()
         .fft()
-        .divideToThirds()
+        .convertToAmplitudeOfThirds()
 
     override fun getAmplitudeSpectrum() = spectrum
     override fun getMaxAmplitude() = calculateMaxAmplitude(data)

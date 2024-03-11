@@ -7,7 +7,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.vrtools.sound_recognizer.theme.SoundRecognizerTheme
 import com.vrtools.sound_recognizer.utils.PERMISSIONS.REQUIRED_PERMISSIONS
-import com.vrtools.sound_recognizer.view.RecognizerApp
+import com.vrtools.sound_recognizer.view.MainView
 
 class MainActivity : ComponentActivity() {
     override fun onStart() {
@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SoundRecognizerTheme {
-                RecognizerApp()
+                MainView()
             }
         }
     }

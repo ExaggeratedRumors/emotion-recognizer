@@ -17,7 +17,7 @@ import kotlin.math.pow
 import kotlin.math.sin
 import kotlin.math.sqrt
 
-enum class State { A_WEIGHTING, C_WEIGHTING }
+enum class DampingState { A_WEIGHTING, C_WEIGHTING }
 
 fun cutoffFrequency(numberOfTerce: Int) =
 BASIC_FREQUENCY * 2f.pow((2f * numberOfTerce - 1) / 6f)
@@ -86,7 +86,7 @@ fun Array<Complex>.fft(): Array<Complex> {
     return y
 }
 
-fun Array<Complex>.divideToThirds(): IntArray{
+fun Array<Complex>.convertToAmplitudeOfThirds(): IntArray{
     val amplitudeData = IntArray(THIRDS_NUMBER) { 0 }
     val cutoffFreq33 = cutoffFrequency(THIRDS_NUMBER)
     val freqWindow = SAMPLING_RATE.toFloat() / FFT_SIZE
@@ -101,28 +101,27 @@ fun Array<Complex>.divideToThirds(): IntArray{
             terce += 1
             continue
         }
-        val absValue = accumulated.real.pow(2) + accumulated.imag.pow(2)
-        if(absValue > amplitudeData[terce - 1])
-            amplitudeData[terce - 1] = absValue.toInt()
+        val absDoubledValue = accumulated.real.pow(2) + accumulated.imag.pow(2)
+        if(absDoubledValue > amplitudeData[terce - 1])
+            amplitudeData[terce - 1] = absDoubledValue.toInt()
         accumulated = Complex()
         iterator += 1
     }
     return amplitudeData
 }
 
-fun getDamping(terce: Int, state: State): Int {
+fun getDamping(terce: Int, state: DampingState): Int {
     return when(state) {
-        State.A_WEIGHTING -> weightingA(terce)
-        State.C_WEIGHTING -> weightingC(terce)
+        DampingState.A_WEIGHTING -> weightingA(terce)
+        DampingState.C_WEIGHTING -> weightingC(terce)
     }
 }
 
-fun getDbSignalForm(amplitudeSpectrum: IntArray, state: State): IntArray {
-    val newData = IntArray(THIRDS_NUMBER)
-    for(i in 0 until THIRDS_NUMBER)
+fun getDbSignalForm(amplitudeSpectrum: IntArray, state: DampingState): IntArray {
+    val newData = IntArray(amplitudeSpectrum.size)
+    for(i in amplitudeSpectrum.indices)
         newData[i] = max(
-            0, getDamping(i, state) +
-                    convertToDecibels(amplitudeSpectrum[i].toFloat())
+            0, getDamping(i, state) + convertToDecibels(amplitudeSpectrum[i].toFloat())
         )
     return newData
 }
