@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.vrtools.sound_recognizer'
+    namespace 'com.ertools.sound_recognizer'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.vrtools.sound_recognizer"
+        applicationId "com.ertools.sound_recognizer"
         minSdk 33
         targetSdk 33
         versionCode 1

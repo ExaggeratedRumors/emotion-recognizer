@@ -1,4 +1,4 @@
-package com.vrtools.sound_recognizer
+package com.ertools.sound_recognizer
 
 import org.junit.Test
 

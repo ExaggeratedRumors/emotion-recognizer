@@ -1,4 +1,4 @@
-package com.vrtools.sound_recognizer
+package com.ertools.sound_recognizer
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.vrtools.sound_recognizer", appContext.packageName)
+        assertEquals("com.ertools.sound_recognizer", appContext.packageName)
     }
 }
