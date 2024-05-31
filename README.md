@@ -8,6 +8,12 @@
 
 Android application using input sound to recognize voice.
 
+## Data
+https://www.kaggle.com/datasets/uwrfkaggler/ravdess-emotional-speech-audio
+https://www.kaggle.com/datasets/ejlok1/toronto-emotional-speech-set-tess
+https://www.kaggle.com/datasets/ejlok1/cremad
+https://www.kaggle.com/datasets/piyushagni5/berlin-database-of-emotional-speech-emodb
+
 ## Release
 
 `
@@ -26,3 +32,4 @@ in progress
 - Android SDK 33
 - JVM 19
 - Gradle 8.0.0
+

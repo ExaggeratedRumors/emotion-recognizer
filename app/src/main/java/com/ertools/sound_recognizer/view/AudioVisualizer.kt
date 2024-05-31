@@ -13,6 +13,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ertools.sound_recognizer.model.AudioRecorder
 import com.ertools.sound_recognizer.model.DampingState
@@ -97,7 +98,6 @@ fun DampingButton(dampingState: MutableState<DampingState>) {
     }
 }
 
-
 @Composable
 fun Graph (provider: SpectrumProvider, state: MutableState<DampingState>) {
     var spectrum by remember { mutableStateOf(provider.getAmplitudeSpectrum()) }
@@ -126,8 +126,9 @@ fun Graph (provider: SpectrumProvider, state: MutableState<DampingState>) {
         ) {
             spectrum.forEach { sample ->
                 val animatedHeight by animateFloatAsState(
-                    targetValue = sample.toFloat(),
-                    animationSpec = spring(), label = "$sample"
+                    targetValue = sample.toFloat() * 10f,
+                    animationSpec = spring(),
+                    label = "$sample"
                 )
                 Box(
                     modifier = Modifier
