@@ -11,6 +11,7 @@ import com.ertools.sound_recognizer.utils.SAMPLING_RATE
 import com.ertools.sound_recognizer.utils.THIRDS_NUMBER
 import com.ertools.sound_recognizer.utils.isPermissionsGainded
 import kotlin.concurrent.thread
+import kotlin.math.max
 
 class AudioRecorder (private val context: Context) : SpectrumProvider {
     private val bufferSize = AudioRecord.getMinBufferSize(
@@ -18,7 +19,7 @@ class AudioRecorder (private val context: Context) : SpectrumProvider {
         AudioFormat.CHANNEL_IN_MONO,
         AudioFormat.ENCODING_PCM_16BIT
     )
-    private val data = ByteArray(bufferSize)
+    private val data = ByteArray(max(bufferSize, 0))
     private var spectrum = IntArray(THIRDS_NUMBER)
     private var recorder: AudioRecord? = null
     @Volatile

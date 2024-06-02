@@ -1,6 +1,5 @@
 package com.ertools.sound_recognizer.view
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -9,9 +8,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ertools.sound_recognizer.ui.Strings.MAIN_VIEW_TITLE
 
+
+@Preview
 @Composable
 fun MainView () {
     Column(
