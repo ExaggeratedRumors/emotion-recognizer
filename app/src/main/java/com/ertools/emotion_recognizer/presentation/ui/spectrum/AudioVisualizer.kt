@@ -1,4 +1,4 @@
-package com.ertools.emotion_recognizer.presentation.ui
+package com.ertools.emotion_recognizer.presentation.ui.spectrum
 
 import android.content.Context
 import androidx.compose.animation.core.animateFloatAsState

@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.ertools.emotion_recognizer.presentation.theme.Theme
-import com.ertools.emotion_recognizer.presentation.ui.MainView
+import com.ertools.emotion_recognizer.presentation.ui.main.MainView
 import com.ertools.emotion_recognizer.utils.PERMISSIONS.REQUIRED_PERMISSIONS
 
 class MainActivity : ComponentActivity() {
