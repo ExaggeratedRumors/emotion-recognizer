@@ -1,4 +1,4 @@
-package com.ertools.sound_recognizer.ui
+package com.ertools.emotion_recognizer.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

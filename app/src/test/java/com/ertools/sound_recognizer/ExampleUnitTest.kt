@@ -1,4 +1,4 @@
-package com.ertools.sound_recognizer
+package com.ertools.emotion_recognizer
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.ertools.sound_recognizer.ui
+package com.ertools.emotion_recognizer.ui
 
 
 object Strings {

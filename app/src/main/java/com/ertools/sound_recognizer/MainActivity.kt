@@ -1,13 +1,13 @@
-package com.ertools.sound_recognizer
+package com.ertools.emotion_recognizer
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.ertools.sound_recognizer.ui.Theme
-import com.ertools.sound_recognizer.utils.PERMISSIONS.REQUIRED_PERMISSIONS
-import com.ertools.sound_recognizer.view.MainView
+import com.ertools.emotion_recognizer.ui.Theme
+import com.ertools.emotion_recognizer.utils.PERMISSIONS.REQUIRED_PERMISSIONS
+import com.ertools.emotion_recognizer.view.MainView
 
 class MainActivity : ComponentActivity() {
     override fun onStart() {

@@ -1,4 +1,4 @@
-package com.ertools.sound_recognizer.utils
+package com.ertools.emotion_recognizer.utils
 
 object Logger {
     fun logSpectrum(spectrum: IntArray) {

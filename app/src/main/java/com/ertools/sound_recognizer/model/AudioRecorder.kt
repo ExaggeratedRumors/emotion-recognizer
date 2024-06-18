@@ -1,15 +1,15 @@
-package com.ertools.sound_recognizer.model
+package com.ertools.emotion_recognizer.model
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
-import com.ertools.sound_recognizer.utils.DEBUG_ENGINE
-import com.ertools.sound_recognizer.utils.READ_DATA_DELAY
-import com.ertools.sound_recognizer.utils.SAMPLING_RATE
-import com.ertools.sound_recognizer.utils.THIRDS_NUMBER
-import com.ertools.sound_recognizer.utils.isPermissionsGainded
+import com.ertools.emotion_recognizer.utils.DEBUG_ENGINE
+import com.ertools.emotion_recognizer.utils.READ_DATA_DELAY
+import com.ertools.emotion_recognizer.utils.SAMPLING_RATE
+import com.ertools.emotion_recognizer.utils.THIRDS_NUMBER
+import com.ertools.emotion_recognizer.utils.isPermissionsGainded
 import kotlin.concurrent.thread
 import kotlin.math.max
 

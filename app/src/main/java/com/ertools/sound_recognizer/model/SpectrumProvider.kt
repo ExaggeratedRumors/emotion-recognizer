@@ -1,4 +1,4 @@
-package com.ertools.sound_recognizer.model
+package com.ertools.emotion_recognizer.model
 
 interface SpectrumProvider {
     fun getAmplitudeSpectrum(): IntArray

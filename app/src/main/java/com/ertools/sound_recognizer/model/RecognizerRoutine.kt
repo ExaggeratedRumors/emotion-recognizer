@@ -1,9 +1,9 @@
-package com.ertools.sound_recognizer.model
+package com.ertools.emotion_recognizer.model
 
 import android.content.Intent
 import android.speech.RecognizerIntent
 import androidx.core.app.ActivityCompat.startActivityForResult
-import com.ertools.sound_recognizer.MainActivity
+import com.ertools.emotion_recognizer.MainActivity
 
 class RecognizerRoutine (val activity: MainActivity){
     val intent = Intent(

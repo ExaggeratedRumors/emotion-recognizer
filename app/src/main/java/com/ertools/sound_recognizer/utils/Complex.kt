@@ -1,4 +1,4 @@
-package com.ertools.sound_recognizer.utils
+package com.ertools.emotion_recognizer.utils
 
 import kotlin.math.atan2
 import kotlin.math.hypot

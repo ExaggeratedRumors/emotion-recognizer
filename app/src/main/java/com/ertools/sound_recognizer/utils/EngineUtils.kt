@@ -1,4 +1,4 @@
-package com.ertools.sound_recognizer.utils
+package com.ertools.emotion_recognizer.utils
 
 const val DEBUG_ENGINE = true
 const val AUDIO_RECORD_MAX_VALUE = 32768

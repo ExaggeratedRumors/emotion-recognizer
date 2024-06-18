@@ -1,12 +1,12 @@
-package com.ertools.sound_recognizer.model
+package com.ertools.emotion_recognizer.model
 
-import com.ertools.sound_recognizer.utils.AUDIO_RECORD_MAX_VALUE
-import com.ertools.sound_recognizer.utils.BASIC_FREQUENCY
-import com.ertools.sound_recognizer.utils.CALIBRATION
-import com.ertools.sound_recognizer.utils.Complex
-import com.ertools.sound_recognizer.utils.FFT_SIZE
-import com.ertools.sound_recognizer.utils.SAMPLING_RATE
-import com.ertools.sound_recognizer.utils.THIRDS_NUMBER
+import com.ertools.emotion_recognizer.utils.AUDIO_RECORD_MAX_VALUE
+import com.ertools.emotion_recognizer.utils.BASIC_FREQUENCY
+import com.ertools.emotion_recognizer.utils.CALIBRATION
+import com.ertools.emotion_recognizer.utils.Complex
+import com.ertools.emotion_recognizer.utils.FFT_SIZE
+import com.ertools.emotion_recognizer.utils.SAMPLING_RATE
+import com.ertools.emotion_recognizer.utils.THIRDS_NUMBER
 import kotlin.experimental.and
 import kotlin.experimental.or
 import kotlin.math.PI

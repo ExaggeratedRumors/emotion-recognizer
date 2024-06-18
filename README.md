@@ -1,9 +1,9 @@
-# Sound Recognizer
+# Emotion Recognizer
 
-![Android support](https://shields.io/badge/Android-SKD_33-green) ![Android support](https://shields.io/badge/In_progress-purple)
+![Android support](https://shields.io/badge/Android-SKD_34-green) ![Android support](https://shields.io/badge/In_progress-purple)
 
 <p align="center">
-    <img src="images/logo.png" width="200"/> 
+    <img src="images/logo.png" width="200" alt="logo"/> 
 </p>
 
 Android application using input sound to recognize voice.
@@ -22,14 +22,11 @@ in progress
 
 ## Technologies
 
-- Jetpack Compose 1.5.4
+- Gradle 8.8
+- JVM 22
+- Android SDK 34
+- Kotlin 1.9.22
+- Jetpack Compose 1.6.8
 - Compose Compiler 1.5.10
 - KotlinDL 0.4.0
-- Kotlin 1.9.22
-
-## Requirements
-
-- Android SDK 33
-- JVM 19
-- Gradle 8.0.0
 

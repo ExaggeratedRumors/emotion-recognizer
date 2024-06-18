@@ -1,4 +1,4 @@
-package com.ertools.sound_recognizer.ui
+package com.ertools.emotion_recognizer.ui
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
