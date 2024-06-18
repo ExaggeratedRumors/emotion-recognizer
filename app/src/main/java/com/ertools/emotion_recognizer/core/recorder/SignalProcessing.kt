@@ -1,4 +1,4 @@
-package com.ertools.emotion_recognizer.model
+package com.ertools.emotion_recognizer.core.recorder
 
 import com.ertools.emotion_recognizer.utils.AUDIO_RECORD_MAX_VALUE
 import com.ertools.emotion_recognizer.utils.BASIC_FREQUENCY

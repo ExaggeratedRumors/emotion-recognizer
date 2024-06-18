@@ -1,4 +1,4 @@
-package com.ertools.emotion_recognizer.model
+package com.ertools.emotion_recognizer.core.recorder
 
 import android.annotation.SuppressLint
 import android.content.Context

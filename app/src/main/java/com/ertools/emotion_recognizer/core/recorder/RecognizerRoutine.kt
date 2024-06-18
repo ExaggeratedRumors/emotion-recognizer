@@ -1,9 +1,9 @@
-package com.ertools.emotion_recognizer.model
+package com.ertools.emotion_recognizer.core.recorder
 
 import android.content.Intent
 import android.speech.RecognizerIntent
 import androidx.core.app.ActivityCompat.startActivityForResult
-import com.ertools.emotion_recognizer.MainActivity
+import com.ertools.emotion_recognizer.core.host.MainActivity
 
 class RecognizerRoutine (val activity: MainActivity){
     val intent = Intent(

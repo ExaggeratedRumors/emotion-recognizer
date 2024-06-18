@@ -1,4 +1,4 @@
-package com.ertools.emotion_recognizer.ui
+package com.ertools.emotion_recognizer.presentation.theme
 
 import androidx.compose.ui.unit.dp
 

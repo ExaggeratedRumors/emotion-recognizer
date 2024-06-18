@@ -1,4 +1,4 @@
-package com.ertools.emotion_recognizer.view
+package com.ertools.emotion_recognizer.presentation.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ertools.emotion_recognizer.ui.Strings.MAIN_VIEW_TITLE
+import com.ertools.emotion_recognizer.presentation.theme.Strings.MAIN_VIEW_TITLE
 
 
 @Preview
